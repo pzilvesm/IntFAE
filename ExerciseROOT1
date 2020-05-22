@@ -1,0 +1,39 @@
+
+#Exercício n°1
+
+TF1 f1("f1","[0]*sin([1]*x)/x",0.,10.)
+f1.SetParameter(0,1);
+f1.SetParameter(1,2);
+f1.SetLineColor(kBlue);
+f1.Draw()
+
+TF1 *f1=new TF1("f1","sin(2*x)/x",0.,10.);
+f1->Eval(1)  #a
+f1->Derivative(1) #b
+f1->Integral(0,3)  #c
+
+#Exercício n°2
+TGraphErrors graphdata("./graphdata.txt", "%lg %lg");
+graphdata.SetTitle("graphdata;""x;""y");
+graphdata.SetMarkerStyle(21);
+graphdata.SetLineColor(kRed);
+graphdata.Draw()
+TGraphErrors graphdata_error("./graphdata_error.txt","%lg %lg %lg%lg");
+graphdata_error.SetTitle("graphdata_error;""x;""y");
+graphdata_error.SetLineColor(kRed);
+graphdata_error.SetMarkerStyle(21);
+graphdata_error.Draw()
+
+
+
+#Exercício n°3
+TH1F *h1 = new TH1F("h1", "Gaussian distribution", 50, 0,10);
+TRandom3 rndgen
+for(int i=0;i<1000;i++){h1->Fill(rndgen.Gaus(5,2));}
+h1-> Draw()
+TPaveStats *st = (TPaveStats*)h1->FindObject("stats");
+st->SetOptStat(111111111);
+h1-> Draw()
+
+
+#Exercício n°4
