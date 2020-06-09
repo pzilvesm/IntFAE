@@ -1,0 +1,147 @@
+root [0] RooWorkspace w("w");
+
+RooFit v3.60 -- Developed by Wouter Verkerke and David Kirkby 
+                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+
+root [1] w.factory("Gaussian:g(x[-5,5],mu[0,-10,10],sigma[1,0,1000])");
+root [2] w.factory("ExtendPdf:model(g,nevt[100,0,100000])");   
+root [3] RooAbsPdf * pdf = w.pdf("model");
+root [4] RooRealVar * x = w.var("x");
+root [5] RooPlot * pl = nullptr;
+root [6] pl = x->frame();
+root [7] pdf->plotOn(pl);
+root [8] pl->Draw(); c1->Draw();
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+root [9] Info in <TCanvas::Print>: pdf file ./c1.pdf has been created
+root [9] pdf->Print("t")
+0x56542a7dd890 RooExtendPdf::model = 1 [Auto,Dirty] 
+  0x56542a7ef500/V- RooGaussian::g = 1 [Auto,Dirty] 
+    0x565429710430/V- RooRealVar::x = 0
+    0x565429617990/V- RooRealVar::mu = 0
+    0x56542a62fee0/V- RooRealVar::sigma = 1
+  0x56542a7ed7b0/V- RooRealVar::nevt = 100 
+root [10] RooDataSet * data = nullptr;
+root [11] data = pdf->generate(*x, 1000);
+root [12] data->plotOn(pl);
+[#1] INFO:Plotting -- RooPlot::updateFitRangeNorm: New event count of 1000 will supercede previous event count of 1 for normalization of PDF projections
+root [13] pl->Draw(); c1->Draw();
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+root [14] RooFitResult * res = nullptr;
+root [15] res = pdf->fitTo(*data, RooFit::Minimizer("Minuit2","Migrad"), RooFit::Save(1) );
+[#1] INFO:Minization -- p.d.f. provides expected number of events, including extended term in likelihood.
+[#1] INFO:Minization -- createNLL: caching constraint set under name CONSTR_OF_PDF_model_FOR_OBS_x with 0 entries
+[#1] INFO:Minization -- RooMinimizer::optimizeConst: activating const optimization
+Warning in <ROOT::Math::FitConfig::CreateMinimizer>: Could not create the Minuit2 minimizer. Try using the minimizer Minuit
+ **********
+ **    1 **SET PRINT           1
+ **********
+ **********
+ **    2 **SET NOGRAD
+ **********
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 mu           0.00000e+00  2.00000e+00   -1.00000e+01  1.00000e+01
+     2 nevt         1.00000e+02  5.00000e+01    0.00000e+00  1.00000e+05
+     3 sigma        1.00000e+00  5.00000e-01    0.00000e+00  1.00000e+03
+ **********
+ **    3 **SET ERR         0.5
+ **********
+ **********
+ **    4 **SET PRINT           1
+ **********
+ **********
+ **    5 **SET STR           1
+ **********
+ NOW USING STRATEGY  1: TRY TO BALANCE SPEED AGAINST RELIABILITY
+ **********
+ **    6 **MIGRAD        1500           1
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY  1.  CONVERGENCE WHEN EDM .LT. 1.00e-03
+ FCN=-3059.22 FROM MIGRAD    STATUS=INITIATE       12 CALLS          13 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  mu           0.00000e+00   2.00000e+00   2.01358e-01  -5.28763e+02
+   2  nevt         1.00000e+02   5.00000e+01   1.63770e-02  -2.84463e+04
+   3  sigma        1.00000e+00   5.00000e-01   1.63770e-02  -1.70828e+03
+                               ERR DEF= 0.5
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=-4463.84 FROM MIGRAD    STATUS=CONVERGED      76 CALLS          77 TOTAL
+                     EDM=1.11444e-07    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  mu           5.28772e-02   3.24234e-02   1.49534e-04  -4.74742e-03
+   2  nevt         9.99998e+02   3.16227e+01   1.46637e-04  -2.26476e-02
+   3  sigma        1.02530e+00   2.29302e-02   3.30320e-05  -4.54446e-01
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  3    ERR DEF=0.5
+  1.051e-03  4.387e-10  7.823e-07 
+  4.387e-10  1.000e+03  3.104e-10 
+  7.823e-07  3.104e-10  5.258e-04 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3
+        1  0.00105   1.000  0.000  0.001
+        2  0.00000   0.000  1.000  0.000
+        3  0.00105   0.001  0.000  1.000
+Info in <ROOT::Math::Fitter::DoUpdateMinimizerOptions: >: Using now Minuit2 / Migrad
+Warning in <ROOT::Math::FitConfig::CreateMinimizer>: Could not create the Minuit2 minimizer. Try using the minimizer Minuit
+ **********
+ **    7 **SET PRINT           1
+ **********
+ **********
+ **    8 **SET NOGRAD
+ **********
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 mu           5.28772e-02  3.24234e-02   -1.00000e+01  1.00000e+01
+     2 nevt         9.99998e+02  3.16227e+01    0.00000e+00  1.00000e+05
+     3 sigma        1.02530e+00  2.29302e-02    0.00000e+00  1.00000e+03
+ **********
+ **    9 **SET ERR         0.5
+ **********
+ **********
+ **   10 **SET PRINT           1
+ **********
+ **********
+ **   11 **HESSE        1500
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=-4463.84 FROM HESSE     STATUS=OK             20 CALLS          21 TOTAL
+                     EDM=1.11569e-07    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                INTERNAL      INTERNAL  
+  NO.   NAME      VALUE            ERROR       STEP SIZE       VALUE   
+   1  mu           5.28772e-02   3.24234e-02   3.24239e-04   5.28774e-03
+   2  nevt         9.99998e+02   3.16227e+01   3.17860e-04  -1.37046e+00
+   3  sigma        1.02530e+00   2.29302e-02   7.16524e-05  -1.50674e+00
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  3    ERR DEF=0.5
+  1.051e-03  9.324e-11  1.675e-06 
+  9.324e-11  1.000e+03  1.486e-13 
+  1.675e-06  1.486e-13  5.258e-04 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3
+        1  0.00225   1.000  0.000  0.002
+        2  0.00000   0.000  1.000  0.000
+        3  0.00225   0.002  0.000  1.000
+[#1] INFO:Minization -- RooMinimizer::optimizeConst: deactivating const optimization
+root [16] res->Print()
+
+  RooFitResult: minimized FCN value: -4463.84, estimated distance to minimum: 1.11569e-07
+                covariance matrix quality: Full, accurate covariance matrix
+                Status : MINIMIZE=0 HESSE=-1 
+
+    Floating Parameter    FinalValue +/-  Error   
+  --------------------  --------------------------
+                    mu    5.2877e-02 +/-  3.24e-02
+                  nevt    1.0000e+03 +/-  3.16e+01
+                 sigma    1.0253e+00 +/-  2.29e-02
+
+root [17] pdf->plotOn(pl);
+root [18] pdf->paramOn(pl);
+root [19] pl->Draw(); 
+root [20] c1->Draw();
