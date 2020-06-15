@@ -1,0 +1,49 @@
+ Production of Kaluza-Klein gamma/Z states in TeV-sized extra dimensions.(main27.cc)
+ 		How cross section reduces with mass.
+ 
+ 
+ KKmass =4000. GeV
+ 
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f fbar -> mu+ mu- (s-channel gamma_KK/Z_KK)   5073 |       37041        500        500 |   5.007e-12  7.094e-14 |
+ |                                                    |                                   |                        |
+ | sum                                                |       37041        500        500 |   5.007e-12  7.094e-14 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+
+KKmass= 5000. GeV
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f fbar -> mu+ mu- (s-channel gamma_KK/Z_KK)   5073 |       26062        500        500 |   1.381e-12  3.051e-14 |
+ |                                                    |                                   |                        |
+ | sum                                                |       26062        500        500 |   1.381e-12  3.051e-14 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+
+KKmass= 6000. Gev
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | f fbar -> mu+ mu- (s-channel gamma_KK/Z_KK)   5073 |       28367        500        500 |   4.840e-13  1.163e-14 |
+ |                                                    |                                   |                        |
+ | sum                                                |       28367        500        500 |   4.840e-13  1.163e-14 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
